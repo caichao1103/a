@@ -4,7 +4,11 @@ pipeline {
   agent any
   stages {
     stage('checkout') {
-      checkout([$class: 'GitSCM', branches: [[name: 'master']], userRemoteConfigs: [[credentialsId: CREDENTIALS_ID, url: ZMHXCLIENT_REPO]]])
+      steps {
+        script {
+          checkout([$class: 'GitSCM', branches: [[name: 'master']], userRemoteConfigs: [[credentialsId: CREDENTIALS_ID, url: ZMHXCLIENT_REPO]]])
+        }
+      }       
     }  
     stage('sayHello') {
       steps {
